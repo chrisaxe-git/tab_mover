@@ -4,7 +4,7 @@
 	"version": "1.1.0",
 	"minAppVersion": "0.15.0",
 	"description": "Provides hotkeys to move tabs within a group without touching the mouse.",
-	"author": "chrisaxe",
+	"author": "Chrisaxe",
 	"authorUrl": "https://github.com/chrisaxe-git",
 	"fundingUrl": "https://github.com/chrisaxe-git",
 	"isDesktopOnly": false
