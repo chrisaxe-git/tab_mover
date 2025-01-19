@@ -6,6 +6,7 @@ export default class MoveTabsPlugin extends Plugin {
             id: "move-tab-left",
             name: "Move Tab Left",
             hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowLeft" }],
+            repeatable: true,
             callback: () => this.moveTab(-1),
         });
 
@@ -13,20 +14,20 @@ export default class MoveTabsPlugin extends Plugin {
             id: "move-tab-right",
             name: "Move Tab Right",
             hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowRight" }],
+            repeatable: true,
             callback: () => this.moveTab(1),
         });
     }
 
     moveTab(direction: -1 | 1) {
-        // Ne fonctionne que si on est sur l'éditeur
-        if (!this.app.workspace.activeEditor) return;
-    
+        if (!this.app.workspace.activeEditor) return; // Permet de ne fonctionner que si on est sur l'éditeur
+
         const activeTab = this.app.workspace.getLeaf();
         const tabGroup = activeTab.parent;
         const tabList = tabGroup.children;
         const activeTabIndex = tabList.indexOf(activeTab); // index de activeTab dans tabList
         const activeTabNewIndex = activeTabIndex + direction; // index qu'activeTab doit avoir : -1 ou +1 si left ou right
-        
+
         if (activeTabNewIndex < 0 || activeTabNewIndex >= tabList.length) return; // Si on est au bout
 
         // Change activetab de place dans le tabList
