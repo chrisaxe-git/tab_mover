@@ -1,4 +1,4 @@
-import { Plugin } from "obsidian";
+import { MarkdownView, Plugin } from "obsidian";
 
 export default class MoveTabsPlugin extends Plugin {
     async onload() {
@@ -7,7 +7,7 @@ export default class MoveTabsPlugin extends Plugin {
             name: "Move Tab Left",
             hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowLeft" }],
             repeatable: true,
-            callback: () => this.moveTab(-1),
+            editorCallback: (editor: Editor, view: MarkdownView) => this.moveTab(-1),
         });
 
         this.addCommand({
@@ -15,13 +15,11 @@ export default class MoveTabsPlugin extends Plugin {
             name: "Move Tab Right",
             hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowRight" }],
             repeatable: true,
-            callback: () => this.moveTab(1),
+            editorCallback: (editor: Editor, view: MarkdownView) => this.moveTab(1),
         });
     }
 
     moveTab(direction: -1 | 1) {
-        if (!this.app.workspace.activeEditor) return; // Permet de ne fonctionner que si on est sur l'éditeur
-
         const activeTab = this.app.workspace.getLeaf();
         const tabGroup = activeTab.parent;
         const tabList = tabGroup.children;
@@ -37,7 +35,4 @@ export default class MoveTabsPlugin extends Plugin {
         tabGroup.recomputeChildrenDimensions(); // actualise l'affichage de la tabList
         this.app.workspace.revealLeaf(tabList[activeTabNewIndex]) // Met le focus sur activeTab at activeTabNewIndex
     }
-    
-    // onunload() {
-    // }
 }
