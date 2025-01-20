@@ -1,4 +1,4 @@
-# Tab mover (1.1.1)
+# Tab mover (1.1.2)
 
 (Obsidian plugin) Provides hotkeys to move tabs within a group without touching the mouse.
 <br>

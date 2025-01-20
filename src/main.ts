@@ -5,7 +5,6 @@ export default class MoveTabsPlugin extends Plugin {
         this.addCommand({
             id: "move-tab-left",
             name: "Move Tab Left",
-            hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowLeft" }],
             repeatable: true,
             editorCallback: (editor: Editor, view: MarkdownView) => this.moveTab(-1),
         });
@@ -13,7 +12,6 @@ export default class MoveTabsPlugin extends Plugin {
         this.addCommand({
             id: "move-tab-right",
             name: "Move Tab Right",
-            hotkeys: [{ modifiers: ["Ctrl", "Alt", "Shift"], key: "ArrowRight" }],
             repeatable: true,
             editorCallback: (editor: Editor, view: MarkdownView) => this.moveTab(1),
         });
